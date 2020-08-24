@@ -7,7 +7,7 @@ import Post from '../Components/Post/Post.js';
 
 const Routes = (
     <Switch>
-        <Route exact path="/"component={Auth}/>
+        <Route exact path="/" component={Auth}/>
         <Route exact path="/Dashboard" component={Dashboard} />
         <Route exact path="/Form" component={Form} />
         <Route exact path="/Post" component={Post} />

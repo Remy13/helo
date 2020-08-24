@@ -8,6 +8,15 @@ const initialState = {
 const LOGIN_USER = 'LOGIN_USER';
 const LOGOUT_USER = 'LOGOUT_USER';
 const GET_USER = 'GET_USER';
+const REGISTER_USER = 'REGISTER_USER';
+
+export function registerUser(user){
+    console.log(user)
+    return {
+        type: REGISTER_USER,
+        payload: user.id
+    }
+}
 
 export function loginUser(user){
     return {
@@ -35,6 +44,9 @@ export default function(state = initialState, action){
     switch(action.type){
         case LOGIN_USER:
             return {...state, user: action.payload, isLoggedIn: true}
+       case REGISTER_USER + "_FULLFILED": 
+            console.log(action.payload)
+            return {...state, user: action.payload.data, isLoggedIn: true}
         case LOGOUT_USER:
             return {...state, ...action.payload}
         case GET_USER + "_PENDING":
