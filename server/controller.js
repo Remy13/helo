@@ -23,7 +23,6 @@ module.exports= {
                     throw err
                   } else {
                     console.log(hash)
-                    //$2a$10$FEBywZh8u9M0Cec/0mWep.1kXrwKeiWDba6tdKvDfEBjyePJnDT7K
                     db.register_user([username, hash]).then(response=>{
                     console.log(response)
                         if(response.length > 0)
@@ -34,7 +33,20 @@ module.exports= {
                 })
               }
             })       
+        },
+    getPosts: async (req,res, next) =>{
+      const {id} = req.params
+      const db = req.app.get('db');
+      db.get_posts([id]).then(response=>{
+        console.log(response)
+        if(response.length > 0){
+          res.status(200).send({message: 'Success', value: response})
         }
+        else{
+          res.status(400).send({message: 'Posts Not Found'})
+      }
+    }).catch(err=>console.log(err))
+    }
 }
 
 

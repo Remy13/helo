@@ -14,7 +14,7 @@ export function registerUser(user){
     console.log(user)
     return {
         type: REGISTER_USER,
-        payload: user.id
+        payload: user
     }
 }
 
@@ -44,17 +44,12 @@ export default function(state = initialState, action){
     switch(action.type){
         case LOGIN_USER:
             return {...state, user: action.payload, isLoggedIn: true}
-       case REGISTER_USER + "_FULLFILED": 
-            console.log(action.payload)
-            return {...state, user: action.payload.data, isLoggedIn: true}
+        case REGISTER_USER: 
+            return {...state, user: action.payload, isLoggedIn: true}
         case LOGOUT_USER:
             return {...state, ...action.payload}
         case GET_USER + "_PENDING":
             return state
-        case GET_USER + "_FULFILLED":
-            return {...state, user: action.payload.data, isLoggedIn: true}
-        case GET_USER + "_REJECTED":
-            return initialState
         default:
             return initialState
     }

@@ -29,6 +29,7 @@ login= () => {
 register= () => {
     axios.post('/register', {username: this.state.username, password: this.state.password}).then( (response) => {
         if (response.status === 200){
+            console.log(response.data)
             this.props.registerUser(response.data.value[0])
             this.props.history.push('/dashboard')
         }
@@ -59,4 +60,3 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { getUser, registerUser })(Auth);
 
-// export default connect(mapStateToProps, {getPokemon})(App);

@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
-import axios from "axios"; 
+import axios from "axios";
+import {connect} from 'react-redux'; 
 import "./Dashboard.css";
 import reducer from '../../Ducks/reducer';
-import { render } from '@testing-library/react';
 
-export default class Dashboard extends React.Component {
+class Dashboard extends React.Component {
     constructor() {
-      super()
-      this.state = {
-        posts: [],
-        search: "",
-        userposts: true
-      }
+        super()
+        this.state = {
+            posts: [],
+            search: "",
+            userposts: true
+        }
+    }
+    componentDidMount(){
+        axios.get ( "/posts" + this.props.user.id ).then(response  =>{
+           console.log(response) 
+
+        })
+    console.log(this.props)
     }
 
-componentDidMount(){
-    // axios.get ( "/posts/" + )
-}
+
+
     render(){
         return ( 
         <div> 
@@ -26,6 +32,14 @@ componentDidMount(){
     )}
 }
 
+const mapStateToProps = (state) => {
+    console.log(state)
+    return{
+      user: state.user
+    }
+  };
+
+export default connect(mapStateToProps)(Dashboard);
 
 
 

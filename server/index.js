@@ -17,6 +17,7 @@ massive({connectionString:CONNECTION_STRING ,ssl: {rejectUnauthorized: false}}).
 
     app.get ( "/login", ctrl.getUser )
     app.post ("/register", ctrl.registerUser )
+    app.get ("/posts:id", ctrl.getPosts )
 }
 );
 

@@ -5,4 +5,4 @@ INSERT INTO users(
 VALUES (
     $1,
     $2
-)RETURNING id;
+)RETURNING id, username, profile_pic;
